@@ -1,12 +1,9 @@
 ---
-- name: Get Hostname
-  hosts: all # replace with the name of your target hosts or a host group
+- name: Get hostname of Linux devices
+  hosts: all
+  gather_facts: yes
 
   tasks:
     - name: Get hostname
-      command: hostname
-      register: hostname_output
-
-    - name: Print hostname
       debug:
-        msg: "The hostname for { inventory_hostname } is { hostname_output.stdout }"
+        var: inventory_hostname
