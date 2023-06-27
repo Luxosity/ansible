@@ -1,13 +1,5 @@
----
-- name: Get hostname of Linux devices
+- name: Get hostname of Linux device
   hosts: all
-  gather_facts: yes
-
   tasks:
     - name: Get hostname
-      hostname:
-      register: result
-
-    - name: Print hostname
-      debug:
-        var: result.stdout
+      command: hostname
