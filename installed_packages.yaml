@@ -1,3 +1,5 @@
+- name: Gather the package facts
+  package_facts:
 - name: Print the package facts
-  ansible.builtin.debug:
+  debug:
     var: ansible_facts.packages
