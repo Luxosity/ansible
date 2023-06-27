@@ -1,5 +1,6 @@
-- name: Get hostname of Linux device
-  hosts: all
+- hosts: all
+  gather_facts: yes
+
   tasks:
-    - name: Get hostname
-      command: hostname
+    - debug:
+        msg: "{{ ansible_hostname }}:{{ ansible_default_ipv4.address }}"
