@@ -1,5 +1,11 @@
-- name: Gather the package facts
-  package_facts:
-- name: Print the package facts
-  debug:
-    var: ansible_facts.packages
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: List installed packages
+      package_facts:
+      register: package_list
+
+    - name: Display package list
+      debug:
+        var: package_list.ansible_facts.packages
