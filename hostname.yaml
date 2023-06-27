@@ -1,13 +1,12 @@
 ---
-- name: Network Getting Started First Playbook
-  connection: ansible.netcommon.network_cli
-  gather_facts: false
-  hosts: all
-  tasks:
-    - name: Get config for VyOS devices
-      vyos.vyos.vyos_facts:
-        gather_subset: all
+- name: Get Hostname
+  hosts: all # replace with the name of your target hosts or a host group
 
-    - name: Display the config
+  tasks:
+    - name: Get hostname
+      command: hostname
+      register: hostname_output
+
+    - name: Print hostname
       debug:
-        msg: "The hostname is {{ ansible_net_hostname }} and the OS is {{ ansible_net_version }}"
+        msg: "The hostname for { inventory_hostname } is { hostname_output.stdout }"
