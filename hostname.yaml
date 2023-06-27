@@ -5,5 +5,9 @@
 
   tasks:
     - name: Get hostname
+      hostname:
+      register: result
+
+    - name: Print hostname
       debug:
-        var: inventory_hostname
+        var: result.stdout
